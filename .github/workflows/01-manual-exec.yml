@@ -4,10 +4,8 @@ name: 'Execucao Manual'
 
 # triggers OU gatilhos de execução 
     # gatilho de exec manual = workflow_dispatch
-
 on:
     workflow_dispatch: 
-
 
 jobs:
 
