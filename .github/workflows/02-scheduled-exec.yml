@@ -14,12 +14,16 @@ jobs:
     e2e-tests:
 
         # maquina que o job via executar
-        runs-on: ['ubuntu-latest']
+        runs-on: ubuntu-latest
 
         # passo a passo das acoes do job
         steps:
         
             - uses: actions/checkout@v4
+
+           # - uses: actions/checkout@v4
+           #   with:
+           #     node-version: lts/*
 
             
            
