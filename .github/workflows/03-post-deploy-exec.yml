@@ -1,15 +1,20 @@
 
-## Abordagen N2 ####
+# CI de Nivel 03 - Disparo automático smepre outro for concluido , como deploy 
+
 
 
 # nome que vai aparecer la nas opções de pipe 
-name: 'Execucao Agendada'
+name: 'Execucao por Deploy'
 
-# triggers OU gatilhos de execução 
-    # gatilho de exec manual = workflow_dispatch
+# regras de disparo da execucao (triggers/gatilhos)
+# gatilho de exec após outro workflow - workflow_run
+
 on:
-    schedule:
-      - cron: '0 8 * * 1' 
+    workflow_run:
+        workflows: ['Execucao Manual']
+        types:
+            - completed
+
 
 jobs:
 
