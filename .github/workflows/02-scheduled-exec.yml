@@ -1,58 +1,43 @@
-
 ## Abordagen N2 ####
 
-
-# nome que vai aparecer la nas opções de pipe 
+# nome que vai aparecer la nas opções de pipe
 name: 'Execucao Agendada'
 
-# triggers OU gatilhos de execução 
-    # gatilho de exec manual = workflow_dispatch
+# triggers OU gatilhos de execução
+# gatilho de exec manual = workflow_dispatch
 on:
-    schedule:
-      - cron: '0 8 * * 1' 
+  schedule:
+    - cron: '0 8 * * 1'
 
 jobs:
+  # descricao do job
+  e2e-tests:
+    # maquina que o job via executar
+    runs-on: ubuntu-latest
 
-    # descricao do job
-    e2e-tests:
+    # passo a passo das acoes do job
+    steps:
+      - uses: actions/checkout@v4
 
-        # maquina que o job via executar
-        runs-on: ubuntu-latest
+      # - uses: actions/checkout@v4
+      #   with:
+      #     node-version: lts/*
 
-        # passo a passo das acoes do job
-        steps:
-        
-            - uses: actions/checkout@v4
+      - name: 'Instalando Yarn'
+        run: npm install -g yarn
 
-           # - uses: actions/checkout@v4
-           #   with:
-           #     node-version: lts/*
+      - name: 'Instalando as dependencias'
+        run: yarn
 
-            
-           
-            - name: 'Instalando Yarn'
-              run: npm install -g yarn     
+      - name: 'Instalando Playwright'
+        run: yarn  playwright install
 
-            - name: 'Instalando as dependencias'
-              run: yarn  
+      - name: 'Testes E2E (end-to-end)'
+        run: yarn  run e2e
 
-            - name: 'Instalando Playwright'
-              run: yarn  playwright install
-
-            - name: 'Testes E2E (end-to-end)'
-              run: yarn  run e2e
-
-            # passed, failed, cancelled
-            - uses: actions/upload-artifact@v4
-              if: ${{ !cancelled() }}
-              with:
-                name: relatorio-de-testes
-                path: ./playwright-report
-
-            
-
-        
-
-    
-
-
+      # passed, failed, cancelled
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: relatorio-de-testes
+          path: ./playwright-report
