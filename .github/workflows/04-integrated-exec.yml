@@ -9,21 +9,21 @@ on:
 
 jobs:
 
-  inspection:
-    runs-on: ubuntu-latest
+    inspection:
+      runs-on: ubuntu-latest
 
-    steps:
+      steps:
 
-       - uses: actions/checkout@v4
+        - uses: actions/checkout@v4
            
-       - name: 'Instalando Yarn'
-         run: npm install -g yarn     
+        - name: 'Instalando Yarn'
+          run: npm install -g yarn     
 
-       - name: 'Instalando as dependencias'
-         run: yarn  
+        - name: 'Instalando as dependencias'
+          run: yarn  
 
-       - name: Padronização de codigo (Lint)
-         run: yarn lint
+        - name: Padronização de codigo (Lint)
+          run: yarn lint
 
 
     # descricao do job
