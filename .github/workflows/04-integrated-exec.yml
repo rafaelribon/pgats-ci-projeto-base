@@ -71,8 +71,3 @@ jobs:
         with:
           name: relatorio-de-testes
           path: ./playwright-report
-
-  deploy:
-    # maquina que o job via executar
-    runs-on: ['ubuntu-latest']
-    needs: [e2e-tests]
