@@ -75,7 +75,7 @@ jobs:
   deploy:
     # maquina que o job via executar
     runs-on: ['ubuntu-latest']
-    needs: [unit]
+    needs: [e2e-tests]
 
     steps:
       - name: Deploy
